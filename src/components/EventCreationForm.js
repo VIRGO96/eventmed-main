@@ -37,17 +37,16 @@ function EventCreationForm() {
       addressed_to: Addressed,
       topic: Topic,
     };
-    dispatch(
-      createEvent(obj, () => {
-        setEvent("");
-        setPrice("");
-        setOrganizerName("");
-        setCatagories("");
-        setLocation("");
-        setAddressed("");
-        setTopic("");
-      })
-    );
+    dispatch(createEvent(obj, () => {
+      setEvent('');
+      setPrice('');
+      setOrganizerName('');
+      setCatagories('');
+      setLocation('');
+      setAddressed('');
+      setTopic('');
+      
+    }));
     // console.log('obj', obj);
   }
 
