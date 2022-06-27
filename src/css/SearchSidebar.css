@@ -1,0 +1,14 @@
+/* Form{
+   padding:10px;
+}
+Form > Form.Label{
+   padding-left: 10px;
+} */
+
+.form__fields{
+   margin-left: 15px;
+}
+.form-label{
+   margin-left: 15px;
+   margin-right: 15px;
+}
