@@ -1,9 +1,13 @@
 import React from "react";
+import Navbar from "./NavigationBar";
 import Topbar from "./Search Form/Topbar";
 import SearchSidebar from "./Search Form/searchSidebar";
 import SearchFormCards from "./Search Form/SearchFormCards";
+import Footer from "./Footer";
+
 // import "../css/Search.css";
 import { useState } from "react";
+
 
 function Search() {
   const [search, setSearch] = useState("");
@@ -12,7 +16,12 @@ function Search() {
   console.log("Data", Category);
 
   return (
+    
     <div className="container main__container">
+      {/* <div className="row sticky-top">
+        <Navbar />
+      </div> */}
+      {/* <br/> */}
       <div className="row sticky-top">
         <Topbar search={search} setSearch={setSearch} />
       </div>
@@ -39,7 +48,13 @@ function Search() {
           />
         </div>
       </div>
+    {/* Footer */}
+    {/* <div className="row fixed-bottom">
+        <Footer />
+      </div> */}
     </div>
+     
+   
   );
 }
 

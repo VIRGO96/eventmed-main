@@ -21,8 +21,8 @@ function searchSidebar(props) {
   return (
     <div>
       <>
-        <Form>
-          <Form.Label>Category</Form.Label>
+        <Form className="mt-45">
+          <Form.Label className="mt-3">Category</Form.Label>
 
           <Form.Group className="mb-3 ml-3 p-20" controlId="formBasicEmail">
             <Form.Check
@@ -130,14 +130,11 @@ function searchSidebar(props) {
               Price Range
             </label>
             {/* Slider */}
-            <Slider priceRange={props.priceRange} setPriceRange={props.setPriceRange} />
-            {/* <MultiRangeSlider
-              min={0}
-              max={1000}
-              onChange={({ min, max }) =>
-                console.log(`min = ${min}, max = ${max}`)
-              }
-            /> */}
+            <Slider
+              priceRange={props.priceRange}
+              setPriceRange={props.setPriceRange}
+            />
+         
           </Form.Group>
         </Form>
       </>

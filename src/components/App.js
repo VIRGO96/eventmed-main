@@ -26,7 +26,14 @@ function App() {
           <Col>
             <UserAuthContextProvider>
               <Routes>
-                <Route path="/" element={<Evenimed />} />
+                <Route
+                  path="/"
+                  element={
+                    // <ProtectedRoute>
+                    <Evenimed />
+                    // </ProtectedRoute>
+                  }
+                />
                 <Route path="/about_us" element={<AboutUs />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />

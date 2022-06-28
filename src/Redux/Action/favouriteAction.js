@@ -1,4 +1,3 @@
-// import { RepositoryFactory } from "../../../Repository/RepositoryFactories";
 import { RepositoryFactory } from "../../Repository/RepositoryFactories";
 
 let favouriteRepository = RepositoryFactory.get("favourite");
@@ -10,7 +9,6 @@ export const createFavourite =
     try {
       let { data } = await favouriteRepository.addFavourite(payload);
       if (data.success) {
-        // alert("Favourite Added successfuly");
         dispatch(getFavourite());
         onSuccess();
       }

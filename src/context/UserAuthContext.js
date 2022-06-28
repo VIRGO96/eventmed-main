@@ -16,7 +16,9 @@ import { auth } from "../firebase";
 const userAuthContext = createContext();
 
 export function UserAuthContextProvider({ children }) {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("auth")) || {}
+  );
 
   // function for logging in with EMAIL & PASSWORD
   function logIn(email, password) {
@@ -31,10 +33,15 @@ export function UserAuthContextProvider({ children }) {
 
   // function for loggin out
   function logOut() {
+    localStorage.clear();
+    setUser(JSON.parse(localStorage.getItem("auth")) || {});
+    
     return signOut(auth);
   }
 
-  // function for signing up 
+
+
+  // function for signing up
   function signUp(email, password) {
     return createUserWithEmailAndPassword(auth, email, password);
   }
@@ -48,6 +55,7 @@ export function UserAuthContextProvider({ children }) {
     const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
       console.log("Auth", currentuser);
       setUser(currentuser);
+      localStorage.setItem("auth", JSON.stringify(currentuser));
     });
 
     return () => {

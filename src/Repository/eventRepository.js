@@ -7,7 +7,7 @@ export default {
     return Repository.get(`${EVENT}`);
   },
   addEvent(payload) {
-    // console.log('payload', payload);
+   
     return Repository.post(`${EVENT}`, payload);
   },
   myEvent(payload) {

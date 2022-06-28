@@ -1,4 +1,4 @@
-// import { RepositoryFactory } from "../../../Repository/RepositoryFactories";
+
 import { RepositoryFactory } from "../../Repository/RepositoryFactories";
 let eventRepository = RepositoryFactory.get("event");
 
