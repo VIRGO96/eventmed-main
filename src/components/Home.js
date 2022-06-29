@@ -27,9 +27,9 @@ function Home() {
       e.preventDefault();
       await logOut();
       swal({
-			title: 'Signing out...',
-			text: `You have been logged out!`,
-		});
+        title: "Signing out...",
+        text: `You have been logged out!`,
+      });
     } catch (error) {
       console.log(error);
     }
@@ -59,25 +59,30 @@ function Home() {
         <div className="home-box">
           <p id="home-welcome">Welcome to your profile!</p>
           <p id="home-text">Favorite events:</p>
-          {myFavouriteLoader ? (
-            <Spinner
-              className="d-flex mx-auto mt-5 align-items-center justify-content-center"
-              size="lg"
-              color="primary"
-              overflow="hidden"
-            />
-          ) : (
-            <div className="row">
-              {favourites &&
-                favourites.map((data) => {
-                  return (
-                    <div className="col-lg-4 mb-3">
-                      <FavouriteCards data={data && data.Event} />
-                    </div>
-                  );
-                })}
-            </div>
-          )}
+          <div id="home-text">
+            {myFavouriteLoader ? (
+              <Spinner
+                className="d-flex mx-auto mt-5 align-items-center justify-content-center"
+                size="lg"
+                color="primary"
+                overflow="hidden"
+              />
+            ) : (
+              <div className="row">
+                {favourites && favourites.length > 0 ? (
+                  favourites.map((data) => {
+                    return (
+                      <div className="col-lg-4 mb-3">
+                        <FavouriteCards data={data && data.Event} />
+                      </div>
+                    );
+                  })
+                ) : (
+                  <p className="text-center">No Favourite Events</p>
+                )}
+              </div>
+            )}
+          </div>
           <div id="home-text">
             <Link className="btn-signup-recover" to="/search">
               Find a new event{" "}
@@ -94,24 +99,18 @@ function Home() {
                 overflow="hidden"
               />
             ) : (
-              // <div className="row">
-              //   {myEvents.map((data) => {
-              //     return (
-              //       <div className="col-lg-4 mb-3">
-              //         <MyEventCards data={data} />
-              //       </div>
-
-              //   );
-              // })}
-              // </div>
               <div className="row">
-                {myEvents.map((data) => {
-                  return (
-                    <div className="col-lg-4 mb-3">
-                      <MyEventCards data={data} />
-                    </div>
-                  );
-                })}
+                {myEvents && myEvents.length > 0 ? (
+                  myEvents.map((data) => {
+                    return (
+                      <div className="col-lg-4 mb-3">
+                        <MyEventCards data={data} />
+                      </div>
+                    );
+                  })
+                ) : (
+                  <p className="text-center">No Events</p>
+                )}
               </div>
             )}
             <Link className="btn-signup-recover" to="/event_creation_form">

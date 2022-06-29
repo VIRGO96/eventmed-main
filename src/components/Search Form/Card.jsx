@@ -1,6 +1,4 @@
 import React from "react";
-// import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-// import FavoriteIcon from "@mui/icons-material/Favorite";
 
 import {
   Card,
@@ -13,10 +11,7 @@ import {
   CardBody,
 } from "reactstrap";
 
-// import {
-//   createFavourite,
-//   removeFavourite,
-// } from "../Redux/Action/favouriteAction";
+
 import {
   createFavourite,
   removeFavourite,
@@ -62,13 +57,6 @@ const Cardbox = (props) => {
         <Card>
           <CardBody>
             <CardText>
-              {/* <i 
-                onClick={() => setFavorite(!Favorite)}
-                className={`${
-                  Favorite ? "fas fa-heart fa-2x text-danger" : "far fa-heart "
-                }`}
-              ></i> */}
-
               <i
                 onClick={handleClick}
                 className={`${

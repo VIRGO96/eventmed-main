@@ -13,15 +13,12 @@ function Search() {
   const [search, setSearch] = useState("");
   const [Category, setCategory] = useState([]);
   const [priceRange, setPriceRange] = useState([0, 20]);
-  console.log("Data", Category);
+  console.log("Category", Category);
 
   return (
     
     <div className="container main__container">
-      {/* <div className="row sticky-top">
-        <Navbar />
-      </div> */}
-      {/* <br/> */}
+    
       <div className="row sticky-top">
         <Topbar search={search} setSearch={setSearch} />
       </div>
@@ -48,10 +45,7 @@ function Search() {
           />
         </div>
       </div>
-    {/* Footer */}
-    {/* <div className="row fixed-bottom">
-        <Footer />
-      </div> */}
+   
     </div>
      
    

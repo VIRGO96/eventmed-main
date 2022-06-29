@@ -1,12 +1,9 @@
 import Form from "react-bootstrap/Form";
-// import Button from "react-bootstrap/Button";
-// import Dropdown from "react-bootstrap/Dropdown";
-// import DropdownButton from "react-bootstrap/DropdownButton";
 import React from "react";
 import Slider from "./Slider";
 import "../../css/SearchSidebar.css";
 import { useState } from "react";
-// import MultiRangeSlider from "../Search Form/multiSlider";
+
 
 
 function searchSidebar(props) {
@@ -28,35 +25,40 @@ function searchSidebar(props) {
             <Form.Check
               reverse
               label="Conference"
-              name="group1"
+              name="Conference"
+              id="Conference"
               className="form__fields"
               onChange={(e) => handleCheckboxChange("Conference")}
             />
             <Form.Check
               reverse
               label="Congress"
-              name="group1"
+              name="Congress"
+              id="Congress"
               className="form__fields"
               onChange={(e) => handleCheckboxChange("Congress")}
             />
             <Form.Check
               reverse
               label="Summit"
-              name="group1"
+              name="Submit"
+              id="Submit"
               className="form__fields"
               onChange={(e) => handleCheckboxChange("Summit")}
             />
             <Form.Check
               reverse
               label="Course"
-              name="group1"
+              name="Course"
+              id="Course"
               className="form__fields"
               onChange={(e) => handleCheckboxChange("Course")}
             />
             <Form.Check
               reverse
               label="Webinar"
-              name="group1"
+              name="Webinar"
+              id="Webinar"
               className="form__fields"
               onChange={(e) => handleCheckboxChange("Webinar")}
             />
@@ -68,14 +70,16 @@ function searchSidebar(props) {
             <Form.Check
               reverse
               label="Online"
-              name="group1"
+              name="Online"
+              id="Online"
               className="form__fields"
               onChange={(e) => handleCheckboxChange("Online")}
             />
             <Form.Check
               reverse
               label="Physical"
-              name="group1"
+              name="Physical"
+              id="Physical"
               className="form__fields"
               onChange={(e) => handleCheckboxChange("Physical")}
             />
@@ -86,21 +90,24 @@ function searchSidebar(props) {
             <Form.Check
               reverse
               label="Student"
-              name="group1"
+              name="Student"
+              id="Student"
               className="form__fields"
               onChange={(e) => handleCheckboxChange("Student")}
             />
             <Form.Check
               reverse
               label="Medic"
-              name="group1"
+              name="Medic"
+              id="Medic"
               className="form__fields"
               onChange={(e) => handleCheckboxChange("Medic")}
             />
             <Form.Check
               reverse
               label="EveryOne"
-              name="group1"
+              name="EveryOne"
+              id="EveryOne"
               className="form__fields"
               onChange={(e) => handleCheckboxChange("EveryOne")}
             />
@@ -112,14 +119,16 @@ function searchSidebar(props) {
             <Form.Check
               reverse
               label="Surgical"
-              name="group1"
+              name="Surgical"
+              id="Surgical"
               className="form__fields"
               onChange={(e) => handleCheckboxChange("Surgical")}
             />
             <Form.Check
               reverse
               label="Non-Surgical"
-              name="group1"
+              name="Non-Surgical"
+              id="Non-Surgical"
               className="form__fields"
               onChange={(e) => handleCheckboxChange("Non-Surgical")}
             />
@@ -134,7 +143,6 @@ function searchSidebar(props) {
               priceRange={props.priceRange}
               setPriceRange={props.setPriceRange}
             />
-         
           </Form.Group>
         </Form>
       </>
