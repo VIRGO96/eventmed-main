@@ -22,11 +22,11 @@ const NavigationBar = () => {
               navbarScroll
             >
               <Nav.Link href="/about_us">About Us</Nav.Link>
-                <Nav.Link href="/search">Find Event</Nav.Link>
+              <Nav.Link href="/search">Find Event</Nav.Link>
               <Nav.Link href="/contact_us">Contact Us</Nav.Link>
             </Nav>
 
-            <Nav.Link id="myAccount-button" href="/login">
+            <Nav.Link id="myAccount-button" href="/home">
               <VscAccount /> My Account
             </Nav.Link>
           </Navbar.Collapse>

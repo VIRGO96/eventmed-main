@@ -17,7 +17,7 @@ const userAuthContext = createContext();
 
 export function UserAuthContextProvider({ children }) {
   const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("auth")) || {}
+    JSON.parse(localStorage.getItem("auth")) || null
   );
 
   // function for logging in with EMAIL & PASSWORD
@@ -34,12 +34,10 @@ export function UserAuthContextProvider({ children }) {
   // function for loggin out
   function logOut() {
     localStorage.clear();
-    setUser(JSON.parse(localStorage.getItem("auth")) || {});
-    
+    setUser(JSON.parse(localStorage.getItem("auth")) || null);
+
     return signOut(auth);
   }
-
-
 
   // function for signing up
   function signUp(email, password) {
@@ -55,7 +53,9 @@ export function UserAuthContextProvider({ children }) {
     const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
       console.log("Auth", currentuser);
       setUser(currentuser);
-      localStorage.setItem("auth", JSON.stringify(currentuser));
+      if (currentuser != null) {
+        localStorage.setItem("auth", JSON.stringify(currentuser));
+      }
     });
 
     return () => {

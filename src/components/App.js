@@ -1,9 +1,10 @@
 import "../css/App.css";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { Container, Row, Col } from "react-bootstrap";
 import { Routes, Route } from "react-router-dom";
 import { UserAuthContextProvider } from "../context/UserAuthContext";
+import { useUserAuth } from "../context/UserAuthContext";
 
 // Import the developed components
 import Evenimed from "./Evenimed";
@@ -19,6 +20,29 @@ import PrivacyPolicy from "./PrivacyPolicy";
 import ContactUs from "./ContactUs";
 
 function App() {
+  // let user = localStorage.getItem("auth");
+  // const [myuser, setUser] = useState(null);
+  // const { user } = useUserAuth();
+  // console.log(abc);
+  // console.log("user", user);
+  // setUser(user)
+  // let myInterval = null;
+  // useEffect(() => {
+  //   myInterval = setInterval(() => {
+  //   console.log("running");
+  //   user = localStorage.getItem("auth");
+  //   console.log(user);
+  //   }, 1000);
+  //   return () => {
+  //     console.log("cleanup running");
+  //     clearInterval(myInterval);
+  //   };
+  // }, [myuser]);
+
+  const user = () => {
+    return localStorage.getItem("auth");
+  };
+
   return (
     <div className="App">
       <Container fluid className="p-0">
@@ -29,9 +53,9 @@ function App() {
                 <Route
                   path="/"
                   element={
-                    // <ProtectedRoute>
-                    <Evenimed />
-                    // </ProtectedRoute>
+                    <ProtectedRoute auth={user()}>
+                      <Evenimed />
+                    </ProtectedRoute>
                   }
                 />
                 <Route path="/about_us" element={<AboutUs />} />
@@ -43,7 +67,7 @@ function App() {
                 <Route
                   path="/home"
                   element={
-                    <ProtectedRoute>
+                    <ProtectedRoute auth={user()}>
                       {" "}
                       <Home />{" "}
                     </ProtectedRoute>
@@ -53,7 +77,7 @@ function App() {
                 <Route
                   path="/event_creation_form"
                   element={
-                    <ProtectedRoute>
+                    <ProtectedRoute auth={user()}>
                       <EventCreationForm />
                     </ProtectedRoute>
                   }
@@ -61,7 +85,7 @@ function App() {
                 <Route
                   path="/search"
                   element={
-                    <ProtectedRoute>
+                    <ProtectedRoute auth={user()}>
                       <Search />
                     </ProtectedRoute>
                   }

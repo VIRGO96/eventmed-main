@@ -18,7 +18,9 @@ function Login() {
     setError("");
     try {
       await logIn(email, password);
-      navigate("/home");
+      setTimeout(() => {
+        navigate("/home");
+      }, 4000);
     } catch (err) {
       var errorCode = err.code;
       if (errorCode === "auth/invalid-email") {
@@ -112,4 +114,3 @@ function Login() {
 }
 
 export default Login;
-

@@ -16,10 +16,10 @@ import { Spinner } from "reactstrap";
 
 function Home() {
   const dispatch = useDispatch();
-  const { myEvents, myEventsLoader } = useSelector((state) => state.event); 
+  const { myEvents, myEventsLoader } = useSelector((state) => state.event);
 
-  const { logOut } = useUserAuth();
-
+  const { logOut, user } = useUserAuth();
+  console.log("user", user);
   const navigate = useNavigate();
 
   const handleLogOut = async (e) => {
@@ -30,7 +30,7 @@ function Home() {
         title: "Signing out...",
         text: `You have been logged out!`,
       });
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       console.log(error);
     }
@@ -44,8 +44,6 @@ function Home() {
       console.log(error);
     }
   };
-
-
 
   const { favourites, myFavouriteLoader } = useSelector(
     (state) => state.favourite
@@ -62,25 +60,25 @@ function Home() {
         <div className="home-box">
           <p id="home-welcome">Welcome to your profile!</p>
           <p id="home-text">Favorite events:</p>
-          {myFavouriteLoader ? ( 
-         <Spinner
+          {myFavouriteLoader ? (
+            <Spinner
               className="d-flex mx-auto mt-5 align-items-center justify-content-center"
               size="lg"
               color="primary"
               overflow="hidden"
-            /> 
-         ) : ( 
-          <div className="row">
-            {favourites &&
-              favourites.map((data) => {
-                return (
-                  <div className="col-lg-4 mb-3">
-                    <FavouriteCards data={data && data.Event} />
-                  </div>
-                );
-              })}
-          </div>
-         )}
+            />
+          ) : (
+            <div className="row">
+              {favourites &&
+                favourites.map((data) => {
+                  return (
+                    <div className="col-lg-4 mb-3">
+                      <FavouriteCards data={data && data.Event} />
+                    </div>
+                  );
+                })}
+            </div>
+          )}
           <div id="home-text">
             <Link className="btn-signup-recover" to="/search">
               Find a new event{" "}
