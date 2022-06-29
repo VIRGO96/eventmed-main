@@ -27,10 +27,9 @@ function Home() {
       e.preventDefault();
       await logOut();
       swal({
-        title: "Signing out...",
-        text: `You have been logged out!`,
-      });
-      navigate("/login");
+			title: 'Signing out...',
+			text: `You have been logged out!`,
+		});
     } catch (error) {
       console.log(error);
     }
