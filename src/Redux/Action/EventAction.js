@@ -61,22 +61,22 @@ export const getEvent = (payload) => async (dispatch) => {
 //mY event
 
 
-export const getmyEvent = (payload) => async (dispatch) => {
-  dispatch(myEventsLoader(true));
-  try {
-    let { data } = await eventRepository.myEvent(payload);
-    // console.log("action best seeleer ddata", data);
-    if (data.success) {
-      dispatch({
-        type: "MY_EVENT",
-        payload: data.data,
-      });
-      dispatch(myEventsLoader(false));
-    }
-  } catch (err) {
-    console.log("error", err.message);
-    dispatch(myEventsLoader(false));
-  }
+export const getMyEvent = payload => async dispatch => {
+	dispatch(myEventsLoader(true));
+	try {
+		let { data } = await eventRepository.myEvent(payload);
+		// console.log("action best seeleer ddata", data);
+		if (data.success) {
+			dispatch({
+				type: 'MY_EVENT',
+				payload: data.data,
+			});
+			dispatch(myEventsLoader(false));
+		}
+	} catch (err) {
+		console.log('error', err.message);
+		dispatch(myEventsLoader(false));
+	}
 };
 
 // Event creation form Loader

@@ -19,6 +19,7 @@ const eventReducer = (state = initialData, action) => {
         getEventsLoader: action.payload,
       };
     case "MY_EVENT":
+      console.log('MY_EVENT');
       return {
         ...state,
         myEvents: action.payload,

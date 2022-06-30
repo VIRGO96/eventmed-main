@@ -13,6 +13,7 @@ import {
 } from 'firebase/auth';
 import { auth } from '../firebase';
 import { Navigate } from 'react-router-dom';
+import Repository from '../Repository/Repository';
 
 const userAuthContext = createContext();
 
@@ -53,6 +54,7 @@ export function UserAuthContextProvider({ children }) {
 		const unsubscribe = onAuthStateChanged(auth, currentuser => {
 			console.log('Auth', currentuser);
 			setUser(currentuser);
+			Repository.defaults.headers.Authorization = `Bearer ${currentuser?.stsTokenManager?.accessToken}`;
 			localStorage.setItem('auth', JSON.stringify(currentuser));
 			console.log(window.location.pathname);
 			// if (currentuser == null && window.location.pathname != '/login') {
