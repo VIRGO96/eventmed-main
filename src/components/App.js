@@ -1,23 +1,23 @@
-import "../css/App.css";
-import React, { useEffect, useState } from "react";
+import '../css/App.css';
+import React, { useEffect, useState } from 'react';
 
-import { Container, Row, Col } from "react-bootstrap";
-import { Routes, Route } from "react-router-dom";
-import { UserAuthContextProvider } from "../context/UserAuthContext";
-import { useUserAuth } from "../context/UserAuthContext";
+import { Container, Row, Col } from 'react-bootstrap';
+import { Routes, Route } from 'react-router-dom';
+import { UserAuthContextProvider } from '../context/UserAuthContext';
+import { useUserAuth } from '../context/UserAuthContext';
 
 // Import the developed components
-import Evenimed from "./Evenimed";
-import Login from "./Login";
-import Signup from "./Signup";
-import ResetPassword from "./ResetPassword";
-import Home from "./Home";
-import ProtectedRoute from "./ProtectedRoute";
-import AboutUs from "./AboutUs";
-import EventCreationForm from "./EventCreationForm";
-import Search from "./Search";
-import PrivacyPolicy from "./PrivacyPolicy";
-import ContactUs from "./ContactUs";
+import Evenimed from './Evenimed';
+import Login from './Login';
+import Signup from './Signup';
+import ResetPassword from './ResetPassword';
+import Home from './Home';
+import ProtectedRoute from './ProtectedRoute';
+import AboutUs from './AboutUs';
+import EventCreationForm from './EventCreationForm';
+import Search from './Search';
+import PrivacyPolicy from './PrivacyPolicy';
+import ContactUs from './ContactUs';
 import UnProtect from './UnProtect';
 
 function App() {
@@ -51,14 +51,7 @@ function App() {
 					<Col>
 						<UserAuthContextProvider>
 							<Routes>
-								<Route
-									path='/'
-									element={
-										<ProtectedRoute auth={user()}>
-											<Evenimed />
-										</ProtectedRoute>
-									}
-								/>
+								<Route path='/' element={<Evenimed />} />
 								<Route path='/about_us' element={<AboutUs />} />
 								<Route
 									path='/login'

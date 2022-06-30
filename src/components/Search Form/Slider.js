@@ -20,7 +20,7 @@ export default function RangeSlider({ priceRange, setPriceRange }) {
 					value={priceRange == '' ? [0, 100] : priceRange}
 					onChange={handleChange}
 					min={0}
-					max={10000}
+					max={1500}
 					valueLabelDisplay='on'
 					getAriaValueText={valuetext}
 				/>
