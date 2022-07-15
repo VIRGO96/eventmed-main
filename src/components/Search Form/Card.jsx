@@ -1,6 +1,4 @@
 import React from "react";
-// import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-// import FavoriteIcon from "@mui/icons-material/Favorite";
 
 import {
   Card,
@@ -13,10 +11,7 @@ import {
   CardBody,
 } from "reactstrap";
 
-// import {
-//   createFavourite,
-//   removeFavourite,
-// } from "../Redux/Action/favouriteAction";
+
 import {
   createFavourite,
   removeFavourite,
@@ -26,23 +21,29 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { version } from "react-dom";
 import { getFavourite } from "../../Redux/Action/favouriteAction";
+import { useUserAuth } from "../../context/UserAuthContext";
 
 const Cardbox = (props) => {
   const dispatch = useDispatch();
   const [aFavorite, setaFavorite] = useState(false);
+  let { user } = useUserAuth();
 
   // Handle CLick
   function handleClick() {
-    let temp =
-      props.favourites &&
-      props.favourites.find((data) => data.event_id == props.data.id);
-    if (temp) {
-      dispatch(removeFavourite(props.data.id));
+    if (user != null) {
+      let temp =
+        props.favourites &&
+        props.favourites.find((data) => data.event_id == props.data.id);
+      if (temp) {
+        dispatch(removeFavourite(props.data.id));
+      } else {
+        let obj = {
+          event_id: props.data && props.data.id,
+        };
+        dispatch(createFavourite(obj));
+      }
     } else {
-      let obj = {
-        event_id: props.data && props.data.id,
-      };
-      dispatch(createFavourite(obj));
+      alert("You need to login to add event to favorite");
     }
   }
 
@@ -61,21 +62,14 @@ const Cardbox = (props) => {
       <CardGroup>
         <Card>
           <CardBody>
-            <CardText>
-              {/* <i 
-                onClick={() => setFavorite(!Favorite)}
-                className={`${
-                  Favorite ? "fas fa-heart fa-2x text-danger" : "far fa-heart "
-                }`}
-              ></i> */}
 
+            <CardText>
               <i
                 onClick={handleClick}
-                className={`${
-                  getFavorites(props.data && props.data.id)
+                className={`${getFavorites(props.data && props.data.id)
                     ? "fas fa-heart fa-2x text-danger"
                     : "far fa-heart "
-                }`}
+                  }`}
               ></i>
             </CardText>
             <CardTitle>

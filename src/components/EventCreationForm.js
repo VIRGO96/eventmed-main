@@ -1,11 +1,13 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-// import Dropdown from "react-bootstrap/Dropdown";
+import NavigationBar from "./NavigationBar";
+import Footer from "./Footer";
 import "../css/EventCreationForm.css";
 import { FormGroup, Label, Col, Input, FormText } from "reactstrap";
 import { useState } from "react";
 // import { createEvent } from "./Redux/Action/EventAction";
+import { useNavigate } from "react-router-dom";
 import {
   createEvent,
   myEventCreationLoader,
@@ -14,8 +16,13 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { Spinner } from "reactstrap";
 
+
+
+
 function EventCreationForm() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+   const { myCreationLoader } = useSelector((state) => state.event);
   const [Event, setEvent] = useState("");
   const [Price, setPrice] = useState("");
   const [OrganizerName, setOrganizerName] = useState("");
@@ -25,8 +32,6 @@ function EventCreationForm() {
   const [Topic, setTopic] = useState("");
 
   function SubmitEventForm(e) {
-    const { myCreationLoader } = useSelector((state) => state.event);
-    // console.log(myEventCreationLoader, "myEventCreationLoader");
     e.preventDefault();
     let obj = {
       title: Event,
@@ -45,16 +50,19 @@ function EventCreationForm() {
       setLocation('');
       setAddressed('');
       setTopic('');
+      navigate("/home");
       
     }));
-    // console.log('obj', obj);
   }
 
   return (
     <>
+      <div className="row sticky-top">
+        <NavigationBar />
+      </div>
       <h3 className="mt-3 text-center overflow-hidden">Event Creation Form</h3>
-
-      <Form className="w-50 h-100 mx-auto" onSubmit={SubmitEventForm}>
+      <br />
+      <Form className="w-50  mx-auto" onSubmit={SubmitEventForm}>
         <FormGroup row>
           <Label sm={2}>Enter Event</Label>
           <Col sm={10}>
@@ -65,6 +73,7 @@ function EventCreationForm() {
               onChange={(e) => setEvent(e.target.value)}
               placeholder="Enter Event"
               type="text"
+              required
             />
           </Col>
         </FormGroup>
@@ -102,6 +111,7 @@ function EventCreationForm() {
               type="number"
               value={Price}
               onChange={(z) => setPrice(z.target.value)}
+              required
             />
           </Col>
         </FormGroup>
@@ -117,6 +127,7 @@ function EventCreationForm() {
               id="exampleSelect"
               name="select"
               type="select"
+              required
             >
               <option>Select Location</option>
               <option value={"Online"}>Online</option>
@@ -134,6 +145,7 @@ function EventCreationForm() {
               type="text"
               value={OrganizerName}
               onChange={(x) => setOrganizerName(x.target.value)}
+              required
             />
           </Col>
         </FormGroup>
@@ -149,6 +161,7 @@ function EventCreationForm() {
               id="exampleSelect"
               name="select"
               type="select"
+              required
             >
               <option>Select Address</option>
               <option value={"Student"}>Student</option>
@@ -170,6 +183,7 @@ function EventCreationForm() {
               id="exampleSelect"
               name="select"
               type="select"
+              required
             >
               <option>Select Topic</option>
               <option value={"Surgical"}>Surgical</option>
@@ -186,20 +200,24 @@ function EventCreationForm() {
             }}
           >
             <Button type="Submit">
-              {/* {myEventCreationLoader ? (
-                  <Spinner
+              {myCreationLoader ? (
+                <Spinner
                   // ssclassName="d-flex mx-auto mt-5 align-items-center justify-content-center overflow-hidden"
                   size="sm"
                   color="white"
-                  />
+                />
               ) : (
-                 "Submit"            
-              )} */}
-              Submit
+                "Submit"
+              )}
             </Button>
           </Col>
         </FormGroup>
       </Form>
+
+      {/* Footer */}
+      <div className="row  mt-5 footerr">
+        <Footer />
+      </div>
     </>
   );
 }

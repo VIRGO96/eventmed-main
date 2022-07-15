@@ -4,12 +4,9 @@ import { Navigate } from "react-router-dom";
 import { useUserAuth } from "../context/UserAuthContext";
 
 // This is necessary in order to prevent users who are not logged in to access the content
-const ProtectedRoute = ({ auth, children }) => {
+const UnProtect = ({ auth, children }) => {
   let { user } = useUserAuth();
-  console.log('inside protec', user);
-  console.log('inside protec', typeof user);
-
-  return user != null ? children : <Navigate to='/login' />;
+  return user != null ? <Navigate to='/home' /> : children;
 
   // if(user == undefined || user == null || Object.keys(user).length == 0) {
   //    return <Navigate to="/login" />
@@ -17,4 +14,4 @@ const ProtectedRoute = ({ auth, children }) => {
   // return children;
 };
 
-export default ProtectedRoute;
+export default UnProtect;

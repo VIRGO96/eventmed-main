@@ -19,6 +19,32 @@ function SearchFormCards(props) {
     dispatch(getEvent());
   }, []);
 
+  const getFilteredEvents = () => {
+    return events.filter((temp) => {
+      if (Object.entries(props.filter).every(filter => filter[1] == '') && props.priceRange[0] == 0 && props.priceRange[1] == 0) {
+        return temp;
+      }
+      else if (
+        (props.filter.category == "" || props.filter.category == temp.category) &&
+        (props.filter.location == "" || props.filter.location == temp.location) &&
+        (props.filter.addressTo == "" || props.filter.addressTo == temp.addressed_to) &&
+        (props.filter.topic == "" || props.filter.topic == temp.topic) &&
+        (props.priceRange[0] == 0 || props.priceRange[1] == 0 || (props.priceRange[0] <= Number(temp.price) && props.priceRange[1] >= Number(temp.price)))
+      ) {
+        return temp;
+      }
+    })
+      .filter((temp) => {
+        if (props.search === "") {
+          return temp;
+        } else if (
+          temp.title.toLowerCase().includes(props.search.toLowerCase())
+        ) {
+          return temp;
+        }
+      })
+  }
+
   return (
     <div className="container">
       {getEventsLoader ? (
@@ -29,38 +55,15 @@ function SearchFormCards(props) {
         />
       ) : (
         <div className="row">
-          {events
-            .filter((temp) => {
-              if (props.Catagory.length == 0) {
-                return temp;
-              } else if (
-                props.Catagory.includes(temp.category) &&
-                props.Catagory.includes(temp.location) &&
-                props.Catagory.includes(temp.addressed_to) &&
-                props.Catagory.includes(temp.topic) &&
-                temp.price >= props.priceRange?.[0] &&
-                temp.price <= props.priceRange?.[1]
-              ) {
-                return temp;
-              }
-            })
-
-            .filter((temp) => {
-              if (props.search === "") {
-                return temp;
-              } else if (
-                temp.title.toLowerCase().includes(props.search.toLowerCase())
-              ) {
-                return temp;
-              }
-            })
-            .map((data) => {
-              return (
-                <div className="col-lg-4 mb-3">
-                  <Cardbox data={data} favourites={favourites} />
-                </div>
-              );
-            })}
+          {getFilteredEvents().length == 0 ? <div className="pt-3 fw-bold d-flex align-items-center justify-content-center">No Event found w.r.t. your criteria</div> :
+            getFilteredEvents()
+                .map((data) => {
+                  return (
+                    <div className="col-lg-4 mb-3">
+                      <Cardbox data={data} favourites={favourites} />
+                    </div>
+                  );
+                })}
         </div>
       )}
     </div>

@@ -3,8 +3,16 @@ import eventReducer from './eventReducer';
 import favouriteReducer from "./favouriteReducer";
 
 
-export let rootReducer = combineReducers({
-  event: eventReducer,
-  favourite: favouriteReducer
+let appReducer = combineReducers({
+	event: eventReducer,
+	favourite: favouriteReducer,
 });
+const rootReducer = (state, action) => {
+	console.log(action.type);
+	if (action.type === 'SIGN_OUT') {
+		return appReducer(undefined, action);
+	}
+	return appReducer(state, action);
+};
+
 export default rootReducer;

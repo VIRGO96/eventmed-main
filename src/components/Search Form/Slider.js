@@ -13,22 +13,22 @@ export default function RangeSlider({ priceRange, setPriceRange }) {
   };
   console.log({ priceRange });
   return (
-    <>
-      <Box sx={{ width: 300 }}>
-        <Slider
-          getAriaLabel={() => "Temperature range"}
-          value={priceRange}
-          onChange={handleChange}
-          min={0}
-          max={10000}
-          valueLabelDisplay="on"
-          getAriaValueText={valuetext}
-        />
-      </Box>
-      <div className="d-flex">
-        <strong>{priceRange?.[0]}</strong>
-        <strong className="ms-auto">{priceRange?.[1]}</strong>
-      </div>
-    </>
+		<>
+			<Box sx={{ width: 300 }}>
+				<Slider
+					getAriaLabel={() => 'Temperature range'}
+					value={priceRange == '' ? [0, 100] : priceRange}
+					onChange={handleChange}
+					min={0}
+					max={1500}
+					valueLabelDisplay='on'
+					getAriaValueText={valuetext}
+				/>
+			</Box>
+			<div className='d-flex'>
+				<strong>{priceRange?.[0]}</strong>
+				<strong className='ms-auto'>{priceRange?.[1]}</strong>
+			</div>
+		</>
   );
 }

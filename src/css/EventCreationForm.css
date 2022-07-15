@@ -1,6 +1,12 @@
+/* .main_form {
+  width: 800px;
+  height: 900px;
+  /* float:center; */
+/* } */
 
-.main_form{
-    width:800px;
-    height: 900px;
-    /* float:center; */
+.footerr {
+  height: auto;
+  width: auto;
+  padding: relative;
+  margin: top 1px;
 }
